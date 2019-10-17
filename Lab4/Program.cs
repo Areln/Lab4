@@ -31,10 +31,10 @@ namespace Lab4
             diceValue1 = rand.Next(1, sides);
             diceValue2 = rand.Next(1, sides);
             
-            Console.WriteLine($"Roll {counter}: {diceValue1} and {diceValue2}");
+            //Console.WriteLine($"Roll {counter}: {diceValue1} and {diceValue2}");
             
             //prints the output in color
-            //PrintInColor($"Roll {counter}: {diceValue1} and {diceValue2}");
+            PrintInColor($"Roll {counter}: {diceValue1} and {diceValue2}");
         }
         static void PrintInColor(string message) 
         {
@@ -48,26 +48,13 @@ namespace Lab4
         }
         static ConsoleColor GetRandomConsoleColor() 
         {
-            int x = rand.Next(0, 6);
-
-            switch (x)
+            int x = 0;
+            //ignore certain colors
+            while (x == 0 || x == 1 || x == 3 || x == 8 || x == 2 || x == 5 || x == 4 || x == 15 || x == 7)
             {
-                case 0:
-                    return ConsoleColor.Yellow;
-                case 1:
-                    return ConsoleColor.Red;
-                case 2:
-                    return ConsoleColor.Magenta;
-                case 3:
-                    return ConsoleColor.Green;
-                case 4:
-                    return ConsoleColor.Cyan;
-                case 5:
-                    return ConsoleColor.Blue;
-                default:
-                    return ConsoleColor.White;
-
+                x = rand.Next(0, 16);
             }
+            return Enum.Parse<ConsoleColor>(Enum.GetName(typeof(ConsoleColor), x));
         }
     }
 }
